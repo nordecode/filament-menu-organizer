@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Models;
+namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $location
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \Datlechin\FilamentMenuBuilder\Models\Menu $menu
+ * @property-read \Nordecode\FilamentMenuOrganizer\Models\Menu $menu
  */
 class MenuLocation extends Model
 {
@@ -22,11 +22,11 @@ class MenuLocation extends Model
 
     public function getTable(): string
     {
-        return config('filament-menu-builder.tables.menu_locations', parent::getTable());
+        return config('filament-menu-organizer.tables.menu_locations', parent::getTable());
     }
 
     public function menu(): BelongsTo
     {
-        return $this->belongsTo(FilamentMenuBuilderPlugin::get()->getMenuModel());
+        return $this->belongsTo(FilamentMenuOrganizerPlugin::get()->getMenuModel());
     }
 }

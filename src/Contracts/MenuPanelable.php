@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Contracts;
+namespace Nordecode\FilamentMenuOrganizer\Contracts;
 
 interface MenuPanelable
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Resources\MenuResource\Pages;
+namespace Nordecode\FilamentMenuOrganizer\Resources\MenuResource\Pages;
 
-use Datlechin\FilamentMenuBuilder\Concerns\HasLocationAction;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\Concerns\HasLocationAction;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
@@ -15,7 +15,7 @@ class ListMenus extends ListRecords
 
     public static function getResource(): string
     {
-        return FilamentMenuBuilderPlugin::get()->getResource();
+        return FilamentMenuOrganizerPlugin::get()->getResource();
     }
 
     protected function getHeaderActions(): array

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Models;
+namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Datlechin\FilamentMenuBuilder\Contracts\MenuPanelable;
-use Datlechin\FilamentMenuBuilder\Enums\LinkTarget;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanelable;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,8 +27,8 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property-read \Illuminate\Database\Eloquent\Collection|MenuItem[] $children
  * @property-read int|null $children_count
  * @property-read \Illuminate\Database\Eloquent\Model|MenuPanelable|null $linkable
- * @property-read \Datlechin\FilamentMenuBuilder\Models\Menu $menu
- * @property-read \Datlechin\FilamentMenuBuilder\Models\MenuItem|null $parent
+ * @property-read \Nordecode\FilamentMenuOrganizer\Models\Menu $menu
+ * @property-read \Nordecode\FilamentMenuOrganizer\Models\MenuItem|null $parent
  */
 class MenuItem extends Model
 {
@@ -36,7 +36,7 @@ class MenuItem extends Model
 
     public function getTable(): string
     {
-        return config('filament-menu-builder.tables.menu_items', parent::getTable());
+        return config('filament-menu-organizer.tables.menu_items', parent::getTable());
     }
 
     protected function casts(): array
@@ -56,7 +56,7 @@ class MenuItem extends Model
 
     public function menu(): BelongsTo
     {
-        return $this->belongsTo(FilamentMenuBuilderPlugin::get()->getMenuModel());
+        return $this->belongsTo(FilamentMenuOrganizerPlugin::get()->getMenuModel());
     }
 
     public function parent(): BelongsTo
@@ -91,7 +91,7 @@ class MenuItem extends Model
         return Attribute::get(function () {
             return match (true) {
                 $this->linkable instanceof MenuPanelable => $this->linkable->getMenuPanelName(),
-                default => __('filament-menu-builder::menu-builder.custom_link'),
+                default => __('filament-menu-organizer::menu-organizer.custom_link'),
             };
         });
     }

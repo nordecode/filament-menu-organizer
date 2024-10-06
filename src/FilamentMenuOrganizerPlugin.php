@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder;
+namespace Nordecode\FilamentMenuOrganizer;
 
-use Datlechin\FilamentMenuBuilder\Contracts\MenuPanel;
-use Datlechin\FilamentMenuBuilder\Models\Menu;
-use Datlechin\FilamentMenuBuilder\Models\MenuItem;
-use Datlechin\FilamentMenuBuilder\Models\MenuLocation;
-use Datlechin\FilamentMenuBuilder\Resources\MenuResource;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanel;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
+use Nordecode\FilamentMenuOrganizer\Models\MenuItem;
+use Nordecode\FilamentMenuOrganizer\Models\MenuLocation;
+use Nordecode\FilamentMenuOrganizer\Resources\MenuResource;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 
-class FilamentMenuBuilderPlugin implements Plugin
+class FilamentMenuOrganizerPlugin implements Plugin
 {
     protected string $resource = MenuResource::class;
 

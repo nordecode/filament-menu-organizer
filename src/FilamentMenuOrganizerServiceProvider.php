@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder;
+namespace Nordecode\FilamentMenuOrganizer;
 
-use Datlechin\FilamentMenuBuilder\Livewire\CreateCustomLink;
-use Datlechin\FilamentMenuBuilder\Livewire\MenuItems;
-use Datlechin\FilamentMenuBuilder\Livewire\MenuPanel;
 use Filament\Support\Assets\AlpineComponent;
 use Filament\Support\Assets\Css;
 use Filament\Support\Facades\FilamentAsset;
 use Livewire\Livewire;
+use Nordecode\FilamentMenuOrganizer\Livewire\CreateCustomLink;
+use Nordecode\FilamentMenuOrganizer\Livewire\MenuItems;
+use Nordecode\FilamentMenuOrganizer\Livewire\MenuPanel;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentMenuBuilderServiceProvider extends PackageServiceProvider
+class FilamentMenuOrganizerServiceProvider extends PackageServiceProvider
 {
-    public static string $name = 'filament-menu-builder';
+    public static string $name = 'filament-menu-organizer';
 
-    public static string $viewNamespace = 'filament-menu-builder';
+    public static string $viewNamespace = 'filament-menu-organizer';
 
     public function configurePackage(Package $package): void
     {
@@ -29,7 +29,7 @@ class FilamentMenuBuilderServiceProvider extends PackageServiceProvider
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToRunMigrations()
-                    ->askToStarRepoOnGitHub('datlechin/filament-menu-builder');
+                    ->askToStarRepoOnGitHub('organizer/filament-menu-organizer');
             });
 
         $configFileName = $package->shortName();
@@ -67,14 +67,14 @@ class FilamentMenuBuilderServiceProvider extends PackageServiceProvider
 
     protected function getAssetPackageName(): ?string
     {
-        return 'datlechin/filament-menu-builder';
+        return 'nordecode/filament-menu-organizer';
     }
 
     protected function getAssets(): array
     {
         return [
-            AlpineComponent::make('filament-menu-builder', __DIR__ . '/../resources/dist/filament-menu-builder.js'),
-            Css::make('filament-menu-builder-styles', __DIR__ . '/../resources/dist/filament-menu-builder.css'),
+            AlpineComponent::make('filament-menu-organizer', __DIR__ . '/../resources/dist/filament-menu-organizer.js'),
+            Css::make('filament-menu-organizer-styles', __DIR__ . '/../resources/dist/filament-menu-organizer.css'),
         ];
     }
 

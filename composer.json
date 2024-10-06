@@ -1,28 +1,18 @@
 {
-    "name": "datlechin/filament-menu-builder",
-    "description": "Create and manage menus and menu items",
-    "keywords": [
-        "datlechin",
-        "laravel",
-        "filament-menu-builder"
-    ],
-    "homepage": "https://github.com/datlechin/filament-menu-builder",
-    "support": {
-        "issues": "https://github.com/datlechin/filament-menu-builder/issues",
-        "source": "https://github.com/datlechin/filament-menu-builder"
-    },
+    "name": "nordecode/filament-menu-organizer",
+    "description": "Uma versão em português do Brasil do plugin Filament Menu Builder, com ajustes específicos para a organização Nordecode",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ngo Quoc Dat",
-            "email": "datlechin@gmail.com",
-            "role": "Developer"
+            "name": "Nordecode",
+            "email": "contato@nordecode.com"
         }
     ],
     "require": {
         "php": "^8.1",
         "filament/filament": "^3.0",
-        "spatie/laravel-package-tools": "^1.15.0"
+        "spatie/laravel-package-tools": "^1.15"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -34,13 +24,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Datlechin\\FilamentMenuBuilder\\": "src/",
-            "Datlechin\\FilamentMenuBuilder\\Database\\Factories\\": "database/factories/"
+            "Nordecode\\FilamentMenuOrganizer\\": "src/",
+            "Nordecode\\FilamentMenuOrganizer\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Datlechin\\FilamentMenuBuilder\\Tests\\": "tests/"
+            "Nordecode\\FilamentMenuOrganizer\\Tests\\": "tests/"
         }
     },
     "scripts": {
@@ -59,10 +49,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Datlechin\\FilamentMenuBuilder\\FilamentMenuBuilderServiceProvider"
+                "Nordecode\\FilamentMenuOrganizer\\FilamentMenuOrganizerServiceProvider"
             ],
             "aliases": {
-                "FilamentMenuBuilder": "Datlechin\\FilamentMenuBuilder\\Facades\\FilamentMenuBuilder"
+                "FilamentMenuOrganizer": "Nordecode\\FilamentMenuOrganizer\\Facades\\FilamentMenuOrganizer"
             }
         }
     },

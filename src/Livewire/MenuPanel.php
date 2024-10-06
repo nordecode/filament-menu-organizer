@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Livewire;
+namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Datlechin\FilamentMenuBuilder\Contracts\MenuPanel as ContractsMenuPanel;
-use Datlechin\FilamentMenuBuilder\Models\Menu;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanel as ContractsMenuPanel;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -95,7 +95,7 @@ class MenuPanel extends Component implements HasForms
         $this->dispatch('menu:created');
 
         Notification::make()
-            ->title(__('filament-menu-builder::menu-builder.notifications.created.title'))
+            ->title(__('filament-menu-organizer::menu-organizer.notifications.created.title'))
             ->success()
             ->send();
     }
@@ -108,8 +108,8 @@ class MenuPanel extends Component implements HasForms
             ->schema([
                 Components\View::make('filament-tables::components.empty-state.index')
                     ->viewData([
-                        'heading' => __('filament-menu-builder::menu-builder.panel.empty.heading'),
-                        'description' => __('filament-menu-builder::menu-builder.panel.empty.description'),
+                        'heading' => __('filament-menu-organizer::menu-organizer.panel.empty.heading'),
+                        'description' => __('filament-menu-organizer::menu-organizer.panel.empty.description'),
                         'icon' => 'heroicon-o-link-slash',
                     ])
                     ->visible($items->isEmpty()),
@@ -156,6 +156,6 @@ class MenuPanel extends Component implements HasForms
 
     public function render(): View
     {
-        return view('filament-menu-builder::livewire.panel');
+        return view('filament-menu-organizer::livewire.panel');
     }
 }

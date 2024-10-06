@@ -1,43 +1,46 @@
-# Filament Menu Builder
+# Filament Menu Organizer
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/datlechin/filament-menu-builder.svg?style=flat-square)](https://packagist.org/packages/datlechin/filament-menu-builder)
-[![Total Downloads](https://img.shields.io/packagist/dt/datlechin/filament-menu-builder.svg?style=flat-square)](https://packagist.org/packages/datlechin/filament-menu-builder)
+Este projeto é uma versão traduzida e adaptada do [Filament Menu Builder](https://github.com/datlechin/filament-menu-builder) criado por [Ngo Quoc Dat](https://github.com/datlechin).
 
-This [Filament](https://filamentphp.com) package allows you to create and manage menus in your Filament application.
+
+[![Última Versão no Packagist](https://img.shields.io/packagist/v/datlechin/filament-menu-builder.svg?style=flat-square)](https://packagist.org/packages/datlechin/filament-menu-builder)
+[![Downloads Totais](https://img.shields.io/packagist/dt/datlechin/filament-menu-builder.svg?style=flat-square)](https://packagist.org/packages/datlechin/filament-menu-builder)
+
+Este pacote para [Filament](https://filamentphp.com) permite que você crie e gerencie menus em sua aplicação Filament.
 
 ![Filament Menu Builder](https://github.com/datlechin/filament-menu-builder/raw/main/art/menu-builder.jpg)
 
-> [!NOTE]
-> I created this for my personal project, so some features and extensibility are still lacking. Pull requests are welcome.
+> [!NOTA]
+> Este fork foi criado para atender às necessidades específicas da Nordecode, incluindo a tradução para o português do Brasil e outras adaptações. Contribuições são bem-vindas!
 
-## Installation
+## Instalação
 
-You can install the package via composer:
+Você pode instalar o pacote via composer:
 
 ```bash
-composer require datlechin/filament-menu-builder
+composer require nordecode/filament-menu-organizer
 ```
 
-You need to publish the migrations and run them:
+Você precisa publicar as migrações e executá-las:
 
 ```bash
-php artisan vendor:publish --tag="filament-menu-builder-migrations"
+php artisan vendor:publish --tag="filament-menu-organizer-migrations"
 php artisan migrate
 ```
 
-You can publish the config file with:
+Você pode publicar o arquivo de configuração com:
 
 ```bash
-php artisan vendor:publish --tag="filament-menu-builder-config"
+php artisan vendor:publish --tag="filament-menu-organizer-config"
 ```
 
-Optionally, if you want to customize the views, you can publish them with:
+Opcionalmente, se você quiser personalizar as views, pode publicá-las com:
 
 ```bash
-php artisan vendor:publish --tag="filament-menu-builder-views"
+php artisan vendor:publish --tag="filament-menu-organizer-views"
 ```
 
-This is the contents of the published config file:
+Este é o conteúdo do arquivo de configuração publicado:
 
 ```php
 return [
@@ -49,140 +52,143 @@ return [
 ];
 ```
 
-Add the plugin to `AdminPanelProvider`:
+Adicione o plugin ao `AdminPanelProvider`:
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
-    ->plugin(FilamentMenuBuilderPlugin::make())
+    ->plugin(FilamentMenuOrganizerPlugin::make())
 ```
 
-## Usage
+## Uso
 
-### Adding locations
+### Adicionando locais
 
-Locations are the places where you can display menus in the frontend. You can add locations in the `AdminPanelProvider`:
+Locais são os lugares onde você pode exibir menus no frontend. Você pode adicionar locais no `AdminPanelProvider`:
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
-            ->addLocation('header', 'Header')
-            ->addLocation('footer', 'Footer')
+        FilamentMenuOrganizerPlugin::make()
+            ->addLocation('cabecalho', 'Cabeçalho')
+            ->addLocation('rodape', 'Rodapé')
     )
 ```
 
-The first argument is the key of the location, and the second argument is the title of the location.
+O primeiro argumento é a chave do local, e o segundo argumento é o título do local.
 
-Alternatively, you may add locations using an array:
+Alternativamente, você pode adicionar locais usando um array:
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addLocations([
-                'header' => 'Header',
-                'footer' => 'Footer',
+                'header' => 'Cabeçalho',
+                'footer' => 'Rodapé',
             ])
     )
 ```
 
-### Setting up Menu Panels
+### Configurando Painéis de Menu
 
-Menu panels are the panels that contain the menu items which you can add to the menus.
+Painéis de menu são os painéis que contêm os itens de menu que você pode adicionar aos menus.
 
-#### Custom Menu Panel
+#### Painel de Menu Personalizado
 
-By default, the package provides a **Custom Link** menu panel that allows you to add custom links to the menus.
+Por padrão, o pacote fornece um painel de menu **Link Personalizado** que permite adicionar links personalizados aos menus.
 
-![Custom Link Menu Panel](https://github.com/datlechin/filament-menu-builder/raw/main/art/custom-link.png)
+![Painel de Menu Link Personalizado](https://github.com/datlechin/filament-menu-builder/raw/main/art/custom-link.png)
 
-#### Static Menu Panel
+#### Painel de Menu Estático
 
-The static menu panel allows you to add menu items manually.
+O painel de menu estático permite adicionar itens de menu manualmente.
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
-use Datlechin\FilamentMenuBuilder\MenuPanel\StaticMenuPanel;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\MenuPanel\StaticMenuPanel;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addMenuPanels([
                 StaticMenuPanel::make()
-                    ->add('Home', url('/'))
+                    ->add('Início', url('/'))
                     ->add('Blog', url('/blog')),
             ])
     )
 ```
 
-Similarily to locations, you may also add static menu items using an array:
+Da mesma forma que os locais, você também pode adicionar itens de menu estáticos usando um array:
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
-use Datlechin\FilamentMenuBuilder\MenuPanel\StaticMenuPanel;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\MenuPanel\StaticMenuPanel;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addMenuPanels([
                 StaticMenuPanel::make()
                     ->addMany([
-                        'Home' => url('/'),
+                        'Início' => url('/'),
                         'Blog' => url('/blog'),
                     ])
             ])
     )
 ```
 
-![Static Menu Panel](https://github.com/datlechin/filament-menu-builder/raw/main/art/static-menu.png)
+![Painel de Menu Estático](https://github.com/datlechin/filament-menu-builder/raw/main/art/static-menu.png)
 
-#### Model Menu Panel
+#### Painel de Menu de Modelo
 
-The model menu panel allows you to add menu items from a model.
+O painel de menu de modelo permite adicionar itens de menu a partir de um modelo.
 
-To create a model menu panel, your model must implement the `\Datlechin\FilamentMenuBuilder\Contracts\MenuPanelable` interface and `\Datlechin\FilamentMenuBuilder\Concerns\HasMenuPanel` trait.
+Para criar um painel de menu de modelo, seu modelo deve implementar a interface `\Nordecode\FilamentMenuOrganizer\Contracts\MenuPanelable` e o trait `\Nordecode\FilamentMenuOrganizer\Concerns\HasMenuPanel`.
 
-Then you will need to implement the following methods:
+Em seguida, você precisará implementar os seguintes métodos:
 
 ```php
 use Illuminate\Database\Eloquent\Model;
-use Datlechin\FilamentMenuBuilder\Contracts\MenuPanelable;
+use Nordecode\FilamentMenuOrganizer\Concerns\HasMenuPanel;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanelable;
 
 class Category extends Model implements MenuPanelable
 {
+    use HasMenuPanel;
+
     public function getMenuPanelTitleColumn(): string
     {
-        return 'name';
+        return 'title';
     }
 
     public function getMenuPanelUrlUsing(): callable
     {
-        return fn (self $model) => route('categories.show', $model->slug);
+        return fn (self $model) => route('category.show', $model->slug);
     }
 }
 ```
 
-Then you can add the model menu panel to the plugin:
+Então você pode adicionar o painel de menu de modelo ao plugin:
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
-use Datlechin\FilamentMenuBuilder\MenuPanel\ModelMenuPanel;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\MenuPanel\ModelMenuPanel;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addMenuPanels([
                 ModelMenuPanel::make()
                     ->model(\App\Models\Category::class),
@@ -190,20 +196,20 @@ $panel
     )
 ```
 
-![Model Menu Panel](https://github.com/datlechin/filament-menu-builder/raw/main/art/model-menu.png)
+![Painel de Menu de Modelo](https://github.com/datlechin/filament-menu-builder/raw/main/art/model-menu.png)
 
-#### Additional Menu Panel Options
+#### Opções Adicionais de Painel de Menu
 
-When registering a menu panel, multiple methods are available allowing you to configure the panel's behavior such as collapse state and pagination.
+Ao registrar um painel de menu, vários métodos estão disponíveis permitindo configurar o comportamento do painel, como estado de colapso e paginação.
 
 ```php
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
-use Datlechin\FilamentMenuBuilder\MenuPanel\StaticMenuPanel;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\MenuPanel\StaticMenuPanel;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addMenuPanels([
                 StaticMenuPanel::make()
                     ->addMany([
@@ -218,29 +224,29 @@ $panel
     )
 ```
 
-### Custom Fields
+### Campos Personalizados
 
-In some cases, you may want to extend menu and menu items with custom fields. To do this, start by passing an array of form components to the `addMenuFields` and `addMenuItemFields` methods when registering the plugin:
+Em alguns casos, você pode querer estender menus e itens de menu com campos personalizados. Para fazer isso, comece passando um array de componentes de formulário para os métodos `addMenuFields` e `addMenuItemFields` ao registrar o plugin:
 
 ```php
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->addMenuFields([
-                Toggle::make('is_logged_in'),
+                Toggle::make('is_logged_in')->label('Requer login'),
             ])
             ->addMenuItemFields([
-                TextInput::make('classes'),
+                TextInput::make('classes')->label('Classes CSS'),
             ])
     )
 ```
 
-Next, create a migration adding the additional columns to the appropriate tables:
+Em seguida, crie uma migração adicionando as colunas adicionais às tabelas apropriadas:
 
 ```php
 use Illuminate\Database\Migrations\Migration;
@@ -250,51 +256,51 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Executa as migrações.
      */
     public function up(): void
     {
-        Schema::table(config('filament-menu-builder.tables.menus'), function (Blueprint $table) {
+        Schema::table(config('filament-menu-organizer.tables.menus'), function (Blueprint $table) {
             $table->boolean('is_logged_in')->default(false);
         });
 
-        Schema::table(config('filament-menu-builder.tables.menu_items'), function (Blueprint $table) {
+        Schema::table(config('filament-menu-organizer.tables.menu_items'), function (Blueprint $table) {
             $table->string('classes')->nullable();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverte as migrações.
      */
     public function down(): void
     {
-        Schema::table(config('filament-menu-builder.tables.menus'), function (Blueprint $table) {
+        Schema::table(config('filament-menu-organizer.tables.menus'), function (Blueprint $table) {
             $table->dropColumn('is_logged_in');
         });
 
-        Schema::table(config('filament-menu-builder.tables.menu_items'), function (Blueprint $table) {
+        Schema::table(config('filament-menu-organizer.tables.menu_items'), function (Blueprint $table) {
             $table->dropColumn('classes');
         });
     }
 }
 ```
 
-Once done, simply run `php artisan migrate`.
+Depois de concluído, basta executar `php artisan migrate`.
 
-### Customizing the Resource
+### Personalizando o Recurso
 
-Out of the box, a default Menu Resource is registered with Filament when registering the plugin in the admin provider. This resource can be extended and overridden allowing for more fine-grained control.
+Por padrão, um Recurso de Menu padrão é registrado no Filament ao registrar o plugin no provedor de administração. Este recurso pode ser estendido e substituído, permitindo um controle mais refinado.
 
-Start by extending the `Datlechin\FilamentMenuBuilder\Resources\MenuResource` class in your application. Below is an example:
+Comece estendendo a classe `Nordecode\FilamentMenuOrganizer\Resources\MenuResource` em sua aplicação. Abaixo está um exemplo:
 
 ```php
 namespace App\Filament\Plugins\Resources;
 
-use Datlechin\FilamentMenuBuilder\Resources\MenuResource as BaseMenuResource;
+use Nordecode\FilamentMenuOrganizer\Resources\MenuResource as BaseMenuResource;
 
 class MenuResource extends BaseMenuResource
 {
-    protected static ?string $navigationGroup = 'Navigation';
+    protected static ?string $navigationGroup = 'Navegação';
 
     public static function getNavigationBadge(): ?string
     {
@@ -303,53 +309,53 @@ class MenuResource extends BaseMenuResource
 }
 ```
 
-Now pass the custom resource to `usingResource` while registering the plugin with the panel:
+Agora passe o recurso personalizado para `usingResource` ao registrar o plugin no painel:
 
 ```php
 use App\Filament\Plugins\Resources\MenuResource;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->usingResource(MenuResource::class)
     )
 ```
 
-### Customizing the Models
+### Personalizando os Modelos
 
-The default models used by the plugin can be configured and overridden similarly to the plugin resource as seen above.
+Os modelos padrão usados pelo plugin podem ser configurados e substituídos de maneira semelhante ao recurso do plugin, como visto acima.
 
-Simply extend the default models and then pass the classes when registering the plugin in the panel:
+Simplesmente estenda os modelos padrão e passe as classes ao registrar o plugin no painel:
 
 ```php
 use App\Models\Menu;
 use App\Models\MenuItem;
 use App\Models\MenuLocation;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 $panel
     ...
     ->plugin(
-        FilamentMenuBuilderPlugin::make()
+        FilamentMenuOrganizerPlugin::make()
             ->usingMenuModel(Menu::class)
             ->usingMenuItemModel(MenuItem::class)
             ->usingMenuLocationModel(MenuLocation::class)
     )
 ```
 
-### Using Menus
+### Usando Menus
 
-Getting the assigned menu for a registered location can be done using the `Menu` model. Below we will call the menu assigned to the `primary` location:
+Obter o menu atribuído a um local registrado pode ser feito usando o modelo `Menu`. Abaixo, chamaremos o menu atribuído ao local `primary`:
 
 ```php
-use Datlechin\FilamentMenuBuilder\Models\Menu;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 
 $menu = Menu::location('primary');
 ```
 
-Menu items can be iterated from the `menuItems` relationship:
+Os itens de menu podem ser iterados a partir do relacionamento `menuItems`:
 
 ```php
 @foreach ($menu->menuItems as $item)
@@ -357,7 +363,7 @@ Menu items can be iterated from the `menuItems` relationship:
 @endforeach
 ```
 
-When a menu item is a parent, a collection of the child menu items will be available on the `children` property:
+Quando um item de menu é pai, uma coleção dos itens de menu filhos estará disponível na propriedade `children`:
 
 ```php
 @foreach ($menu->menuItems as $item)
@@ -371,24 +377,35 @@ When a menu item is a parent, a collection of the child menu items will be avail
 @endforeach
 ```
 
-## Changelog
+## Registro de Alterações
 
-Please see [CHANGELOG](https://github.com/datlechin/filament-menu-builder/raw/main/CHANGELOG.md) for more information on what has changed recently.
+Por favor, veja [CHANGELOG](CHANGELOG.md) para mais informações sobre o que mudou recentemente.
 
-## Contributing
+## Contribuindo
 
-Please see [CONTRIBUTING](https://github.com/datlechin/filament-menu-builder/raw/main/.github/CONTRIBUTING.md) for details.
+Por favor, veja [CONTRIBUTING](.github/CONTRIBUTING.md) para detalhes.
 
-## Security Vulnerabilities
+## Vulnerabilidades de Segurança
 
-Please review [our security policy](https://github.com/datlechin/filament-menu-builder/security/policy) on how to report security vulnerabilities.
+Por favor, revise [nossa política de segurança](../../security/policy) sobre como reportar vulnerabilidades de segurança.
 
-## Credits
+## Créditos
 
 - [Ngo Quoc Dat](https://github.com/datlechin)
 - [Log1x](https://github.com/Log1x)
-- [All Contributors](https://github.com/datlechin/filament-menu-builder/contributors)
+- [Todos os Contribuidores](../../contributors)
 
-## License
+## Licença
 
-The MIT License (MIT). Please see [License File](https://github.com/datlechin/filament-menu-builder/raw/main/LICENSE.md) for more information.
+Este projeto é licenciado sob os termos da licença MIT.
+
+### Nota sobre a licença
+Este fork mantém a licença original MIT do projeto Filament Menu Builder. Reconhecemos e respeitamos o trabalho original de Ngo Quoc Dat.
+Quaisquer modificações ou adições feitas neste fork estão também sob a licença MIT, em conformidade com os termos da licença original.
+Para mais detalhes, consulte o arquivo [LICENSE](LICENSE.md) neste repositório.
+
+### Créditos
+
+- Projeto original: [datlechin/filament-menu-builder](https://github.com/datlechin/filament-menu-builder)
+- Autor original: [Ngo Quoc Dat](https://github.com/datlechin)
+- Adaptação e tradução: [Nordecode](https://github.com/nordecode)

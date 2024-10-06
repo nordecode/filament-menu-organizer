@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Models;
+namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,9 +15,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property bool $is_visible
  * @property \Illuminate\Support\Carbon $created_at
  * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\Datlechin\FilamentMenuBuilder\Models\MenuLocation[] $locations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Nordecode\FilamentMenuOrganizer\Models\MenuLocation[] $locations
  * @property-read int|null $locations_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Datlechin\FilamentMenuBuilder\Models\MenuItem[] $menuItems
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Nordecode\FilamentMenuOrganizer\Models\MenuItem[] $menuItems
  * @property-read int|null $menuItems_count
  */
 class Menu extends Model
@@ -26,7 +26,7 @@ class Menu extends Model
 
     public function getTable(): string
     {
-        return config('filament-menu-builder.tables.menus', parent::getTable());
+        return config('filament-menu-organizer.tables.menus', parent::getTable());
     }
 
     protected function casts(): array
@@ -38,12 +38,12 @@ class Menu extends Model
 
     public function locations(): HasMany
     {
-        return $this->hasMany(FilamentMenuBuilderPlugin::get()->getMenuLocationModel());
+        return $this->hasMany(FilamentMenuOrganizerPlugin::get()->getMenuLocationModel());
     }
 
     public function menuItems(): HasMany
     {
-        return $this->hasMany(FilamentMenuBuilderPlugin::get()->getMenuItemModel())
+        return $this->hasMany(FilamentMenuOrganizerPlugin::get()->getMenuItemModel())
             ->whereNull('parent_id')
             ->orderBy('parent_id')
             ->orderBy('order')
@@ -52,7 +52,7 @@ class Menu extends Model
 
     public static function location(string $location): ?self
     {
-        return FilamentMenuBuilderPlugin::get()
+        return FilamentMenuOrganizerPlugin::get()
             ->getMenuLocationModel()::with(['menu' => fn (Builder $query) => $query->where('is_visible', true)])
             ->where('location', $location)
             ->first()?->menu;

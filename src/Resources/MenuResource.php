@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Resources;
+namespace Nordecode\FilamentMenuOrganizer\Resources;
 
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Forms\Components;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
@@ -18,7 +18,7 @@ class MenuResource extends Resource
 
     public static function getModel(): string
     {
-        return FilamentMenuBuilderPlugin::get()->getMenuModel();
+        return FilamentMenuOrganizerPlugin::get()->getMenuModel();
     }
 
     public static function form(Form $form): Form
@@ -29,34 +29,34 @@ class MenuResource extends Resource
                 Components\Grid::make(4)
                     ->schema([
                         Components\TextInput::make('name')
-                            ->label(__('filament-menu-builder::menu-builder.resource.name.label'))
+                            ->label(__('filament-menu-organizer::menu-organizer.resource.name.label'))
                             ->required()
                             ->columnSpan(3),
 
                         Components\ToggleButtons::make('is_visible')
                             ->grouped()
                             ->options([
-                                true => __('filament-menu-builder::menu-builder.resource.is_visible.visible'),
-                                false => __('filament-menu-builder::menu-builder.resource.is_visible.hidden'),
+                                true => __('filament-menu-organizer::menu-organizer.resource.is_visible.visible'),
+                                false => __('filament-menu-organizer::menu-organizer.resource.is_visible.hidden'),
                             ])
                             ->colors([
                                 true => 'primary',
                                 false => 'danger',
                             ])
                             ->required()
-                            ->label(__('filament-menu-builder::menu-builder.resource.is_visible.label'))
+                            ->label(__('filament-menu-organizer::menu-organizer.resource.is_visible.label'))
                             ->default(true),
                     ]),
 
                 Components\Group::make()
-                    ->visible(fn (Component $component) => $component->evaluate(FilamentMenuBuilderPlugin::get()->getMenuFields()) !== [])
-                    ->schema(FilamentMenuBuilderPlugin::get()->getMenuFields()),
+                    ->visible(fn (Component $component) => $component->evaluate(FilamentMenuOrganizerPlugin::get()->getMenuFields()) !== [])
+                    ->schema(FilamentMenuOrganizerPlugin::get()->getMenuFields()),
             ]);
     }
 
     public static function table(Table $table): Table
     {
-        $locations = FilamentMenuBuilderPlugin::get()->getLocations();
+        $locations = FilamentMenuOrganizerPlugin::get()->getLocations();
 
         return $table
             ->modifyQueryUsing(fn ($query) => $query->withCount('menuItems'))
@@ -64,23 +64,23 @@ class MenuResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable()
-                    ->label(__('filament-menu-builder::menu-builder.resource.name.label')),
+                    ->label(__('filament-menu-organizer::menu-organizer.resource.name.label')),
                 Tables\Columns\TextColumn::make('locations.location')
-                    ->label(__('filament-menu-builder::menu-builder.resource.locations.label'))
-                    ->default(__('filament-menu-builder::menu-builder.resource.locations.empty'))
+                    ->label(__('filament-menu-organizer::menu-organizer.resource.locations.label'))
+                    ->default(__('filament-menu-organizer::menu-organizer.resource.locations.empty'))
                     ->color(fn (string $state) => array_key_exists($state, $locations) ? 'primary' : 'gray')
                     ->formatStateUsing(fn (string $state) => $locations[$state] ?? $state)
                     ->limitList(2)
                     ->sortable()
                     ->badge(),
                 Tables\Columns\TextColumn::make('menu_items_count')
-                    ->label(__('filament-menu-builder::menu-builder.resource.items.label'))
+                    ->label(__('filament-menu-organizer::menu-organizer.resource.items.label'))
                     ->icon('heroicon-o-link')
                     ->numeric()
                     ->default(0)
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_visible')
-                    ->label(__('filament-menu-builder::menu-builder.resource.is_visible.label'))
+                    ->label(__('filament-menu-organizer::menu-organizer.resource.is_visible.label'))
                     ->sortable()
                     ->boolean(),
             ])
@@ -97,8 +97,8 @@ class MenuResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \Datlechin\FilamentMenuBuilder\Resources\MenuResource\Pages\ListMenus::route('/'),
-            'edit' => \Datlechin\FilamentMenuBuilder\Resources\MenuResource\Pages\EditMenu::route('/{record}/edit'),
+            'index' => \Nordecode\FilamentMenuOrganizer\Resources\MenuResource\Pages\ListMenus::route('/'),
+            'edit' => \Nordecode\FilamentMenuOrganizer\Resources\MenuResource\Pages\EditMenu::route('/{record}/edit'),
         ];
     }
 }

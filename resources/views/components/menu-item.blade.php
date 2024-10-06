@@ -1,7 +1,7 @@
 @props(['item'])
 
 @php
-    /** @var \Datlechin\FilamentMenuBuilder\Models\MenuItem $item */
+    /** @var \Nordecode\FilamentMenuOrganizer\Models\MenuItem $item */
 
     $hasChildren = $item->children->isNotEmpty();
 @endphp
@@ -21,7 +21,7 @@
                 <x-filament::icon-button
                     icon="heroicon-o-chevron-right"
                     x-on:click="open = !open"
-                    :tooltip="trans('filament-menu-builder::menu-builder.items.expand')"
+                    :tooltip="trans('filament-menu-organizer::menu-organizer.items.expand')"
                     color="gray"
                     class="transition duration-200 ease-in-out"
                     x-bind:class="{ 'rotate-90': open }"
@@ -54,7 +54,7 @@
         class="mt-2 space-y-2 ms-4"
     >
         @foreach($item->children as $child)
-            <x-filament-menu-builder::menu-item :item="$child" />
+            <x-filament-menu-organizer::menu-item :item="$child" />
         @endforeach
     </ul>
 </li>

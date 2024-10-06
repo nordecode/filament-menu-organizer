@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Livewire;
+namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Datlechin\FilamentMenuBuilder\Enums\LinkTarget;
-use Datlechin\FilamentMenuBuilder\Models\Menu;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -46,7 +46,7 @@ class CreateCustomLink extends Component implements HasForms
             ]);
 
         Notification::make()
-            ->title(__('filament-menu-builder::menu-builder.notifications.created.title'))
+            ->title(__('filament-menu-organizer::menu-organizer.notifications.created.title'))
             ->success()
             ->send();
 
@@ -59,13 +59,13 @@ class CreateCustomLink extends Component implements HasForms
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->label(__('filament-menu-builder::menu-builder.form.title'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.title'))
                     ->required(),
                 TextInput::make('url')
-                    ->label(__('filament-menu-builder::menu-builder.form.url'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.url'))
                     ->required(),
                 Select::make('target')
-                    ->label(__('filament-menu-builder::menu-builder.open_in.label'))
+                    ->label(__('filament-menu-organizer::menu-organizer.open_in.label'))
                     ->options(LinkTarget::class)
                     ->default(LinkTarget::Self),
             ]);
@@ -73,6 +73,6 @@ class CreateCustomLink extends Component implements HasForms
 
     public function render(): View
     {
-        return view('filament-menu-builder::livewire.create-custom-link');
+        return view('filament-menu-organizer::livewire.create-custom-link');
     }
 }

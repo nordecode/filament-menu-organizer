@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\MenuPanel;
+namespace Nordecode\FilamentMenuOrganizer\MenuPanel;
 
 use Closure;
 

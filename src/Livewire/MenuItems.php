@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Livewire;
+namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Datlechin\FilamentMenuBuilder\Enums\LinkTarget;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderPlugin;
-use Datlechin\FilamentMenuBuilder\Models\Menu;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -48,7 +48,7 @@ class MenuItems extends Component implements HasActions, HasForms
             return;
         }
 
-        FilamentMenuBuilderPlugin::get()->getMenuItemModel()::query()
+        FilamentMenuOrganizerPlugin::get()->getMenuItemModel()::query()
             ->whereIn('id', $order)
             ->update([
                 'order' => DB::raw(
@@ -80,37 +80,37 @@ class MenuItems extends Component implements HasActions, HasForms
             ->size(ActionSize::Small)
             ->modalHeading(fn (array $arguments): string => __('filament-actions::edit.single.modal.heading', ['label' => $arguments['title']]))
             ->icon('heroicon-m-pencil-square')
-            ->fillForm(fn (array $arguments): array => FilamentMenuBuilderPlugin::get()->getMenuItemModel()::query()
+            ->fillForm(fn (array $arguments): array => FilamentMenuOrganizerPlugin::get()->getMenuItemModel()::query()
                 ->where('id', $arguments['id'])
                 ->with('linkable')
                 ->first()
                 ->toArray())
             ->form([
                 TextInput::make('title')
-                    ->label(__('filament-menu-builder::menu-builder.form.title'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.title'))
                     ->required(),
                 TextInput::make('url')
                     ->hidden(fn (?string $state, Get $get): bool => blank($state) || filled($get('linkable_type')))
-                    ->label(__('filament-menu-builder::menu-builder.form.url'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.url'))
                     ->required(),
                 Placeholder::make('linkable_type')
-                    ->label(__('filament-menu-builder::menu-builder.form.linkable_type'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.linkable_type'))
                     ->hidden(fn (?string $state): bool => blank($state))
                     ->content(fn (string $state) => $state),
                 Placeholder::make('linkable_id')
-                    ->label(__('filament-menu-builder::menu-builder.form.linkable_id'))
+                    ->label(__('filament-menu-organizer::menu-organizer.form.linkable_id'))
                     ->hidden(fn (?string $state): bool => blank($state))
                     ->content(fn (string $state) => $state),
                 Select::make('target')
-                    ->label(__('filament-menu-builder::menu-builder.open_in.label'))
+                    ->label(__('filament-menu-organizer::menu-organizer.open_in.label'))
                     ->options(LinkTarget::class)
                     ->default(LinkTarget::Self),
                 Group::make()
-                    ->visible(fn (FormComponent $component) => $component->evaluate(FilamentMenuBuilderPlugin::get()->getMenuItemFields()) !== [])
-                    ->schema(FilamentMenuBuilderPlugin::get()->getMenuItemFields()),
+                    ->visible(fn (FormComponent $component) => $component->evaluate(FilamentMenuOrganizerPlugin::get()->getMenuItemFields()) !== [])
+                    ->schema(FilamentMenuOrganizerPlugin::get()->getMenuItemFields()),
             ])
             ->action(
-                fn (array $data, array $arguments) => FilamentMenuBuilderPlugin::get()->getMenuItemModel()::query()
+                fn (array $data, array $arguments) => FilamentMenuOrganizerPlugin::get()->getMenuItemModel()::query()
                     ->where('id', $arguments['id'])
                     ->update($data),
             )
@@ -132,7 +132,7 @@ class MenuItems extends Component implements HasActions, HasForms
             ->modalSubmitActionLabel(__('filament-actions::delete.single.modal.actions.delete.label'))
             ->modalIcon(FilamentIcon::resolve('actions::delete-action.modal') ?? 'heroicon-o-trash')
             ->action(function (array $arguments): void {
-                $menuItem = FilamentMenuBuilderPlugin::get()->getMenuItemModel()::query()->where('id', $arguments['id'])->first();
+                $menuItem = FilamentMenuOrganizerPlugin::get()->getMenuItemModel()::query()->where('id', $arguments['id'])->first();
 
                 $menuItem?->delete();
             });
@@ -140,6 +140,6 @@ class MenuItems extends Component implements HasActions, HasForms
 
     public function render(): View
     {
-        return view('filament-menu-builder::livewire.menu-items');
+        return view('filament-menu-organizer::livewire.menu-items');
     }
 }

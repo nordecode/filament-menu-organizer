@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Datlechin\FilamentMenuBuilder\Tests;
+namespace Nordecode\FilamentMenuOrganizer\Tests;
 
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
-use Datlechin\FilamentMenuBuilder\FilamentMenuBuilderServiceProvider;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
 use Filament\FilamentServiceProvider;
 use Filament\Forms\FormsServiceProvider;
@@ -46,17 +46,12 @@ class TestCase extends Orchestra
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
-            FilamentMenuBuilderServiceProvider::class,
+            FilamentMenuOrganizerServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-menu-builder_table.php.stub';
-        $migration->up();
-        */
     }
 }
