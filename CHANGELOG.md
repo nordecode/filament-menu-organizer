@@ -1,6 +1,20 @@
 # Changelog
 
-All notable changes to `filament-menu-builder` will be documented in this file.
+Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+
+O formato é baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/),
+e este projeto adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/spec/v2.0.0.html).
+
+## [Não lançado]
+
+### Adicionado
+- Tradução completa para português do Brasil.
+- Adaptações específicas para uso na organização Nordecode.
+
+### Modificado
+- Fork do projeto original [datlechin/filament-menu-builder](https://github.com/datlechin/filament-menu-builder).
+- Atualização do `composer.json` com novos detalhes do projeto.
+- Atualização do README.md com créditos ao projeto original e instruções de uso.
 
 ## v0.5.3 - 2024-09-15
 
