@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanelable;
-use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanelable;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 /**
  * @property int $id

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Resources;
 
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Forms\Components;
 use Filament\Forms\Components\Component;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 class MenuResource extends Resource
 {

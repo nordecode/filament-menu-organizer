@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Resources\MenuResource\Pages;
 
-use Nordecode\FilamentMenuOrganizer\Concerns\HasLocationAction;
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Nordecode\FilamentMenuOrganizer\Concerns\HasLocationAction;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 class ListMenus extends ListRecords
 {

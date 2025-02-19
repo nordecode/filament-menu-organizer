@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Contracts\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 /**
  * @property int $id

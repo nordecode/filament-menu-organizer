@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Resources\MenuResource\Pages;
 
-use Nordecode\FilamentMenuOrganizer\Concerns\HasLocationAction;
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Actions;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Form;
 use Filament\Resources\Pages\EditRecord;
+use Nordecode\FilamentMenuOrganizer\Concerns\HasLocationAction;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 class EditMenu extends EditRecord
 {

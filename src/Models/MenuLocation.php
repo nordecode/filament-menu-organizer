@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Models;
 
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 /**
  * @property int $id

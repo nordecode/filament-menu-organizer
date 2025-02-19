@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Concerns;
 
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 use Filament\Actions\Action;
 use Filament\Forms\Components;
 use Filament\Notifications\Notification;
 use Filament\Support\Enums\MaxWidth;
 use Illuminate\Support\Collection;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
 
 trait HasLocationAction
 {

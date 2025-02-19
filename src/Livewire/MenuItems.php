@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
-use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
-use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\InteractsWithActions;
 use Filament\Actions\Contracts\HasActions;
@@ -27,6 +24,9 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\FilamentMenuOrganizerPlugin;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 
 class MenuItems extends Component implements HasActions, HasForms
 {

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer;
 
+use Filament\Contracts\Plugin;
+use Filament\Panel;
 use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanel;
 use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Nordecode\FilamentMenuOrganizer\Models\MenuItem;
 use Nordecode\FilamentMenuOrganizer\Models\MenuLocation;
 use Nordecode\FilamentMenuOrganizer\Resources\MenuResource;
-use Filament\Contracts\Plugin;
-use Filament\Panel;
 
 class FilamentMenuOrganizerPlugin implements Plugin
 {
