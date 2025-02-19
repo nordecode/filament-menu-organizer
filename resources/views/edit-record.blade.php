@@ -48,8 +48,10 @@
             <livewire:create-custom-link :menu="$record" />
         </div>
         <div class="col-span-12 sm:col-span-8">
-            <x-filament::section>
-                <livewire:menu-builder-items :menu="$record" />
+            <x-filament::section class="h-full">
+                <div class="overflow-auto max-h-[calc(100vh-12rem)]">
+                    <livewire:menu-builder-items :menu="$record" />
+                </div>
             </x-filament::section>
         </div>
     </div>
