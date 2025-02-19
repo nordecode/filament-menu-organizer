@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
-use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -15,6 +13,8 @@ use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
+use Nordecode\FilamentMenuOrganizer\Enums\LinkTarget;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 
 class CreateCustomLink extends Component implements HasForms
 {

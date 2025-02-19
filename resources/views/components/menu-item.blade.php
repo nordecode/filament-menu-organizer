@@ -32,10 +32,6 @@
             <div class="text-sm font-medium leading-6 text-gray-950 dark:text-white whitespace-nowrap">
                 {{ $item->title }}
             </div>
-
-            <div class="hidden overflow-hidden text-sm text-gray-500 sm:block dark:text-gray-400 whitespace-nowrap text-ellipsis">
-                {{ $item->url }}
-            </div>
         </div>
         <div class="flex items-center gap-2">
             <x-filament::badge :color="$item->type === 'internal' ? 'primary' : 'gray'" class="hidden sm:block">

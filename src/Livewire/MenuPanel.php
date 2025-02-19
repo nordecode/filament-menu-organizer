@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Nordecode\FilamentMenuOrganizer\Livewire;
 
-use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanel as ContractsMenuPanel;
-use Nordecode\FilamentMenuOrganizer\Models\Menu;
 use Filament\Forms\Components;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -14,6 +12,8 @@ use Filament\Notifications\Notification;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Nordecode\FilamentMenuOrganizer\Contracts\MenuPanel as ContractsMenuPanel;
+use Nordecode\FilamentMenuOrganizer\Models\Menu;
 
 class MenuPanel extends Component implements HasForms
 {
